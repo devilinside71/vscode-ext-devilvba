@@ -3,7 +3,11 @@ TODO:
 General:
 Full text, not only selection
 register API
-Settings
++Settings
++Menu
+
+
+Separate branches >>>
 
 language-configuration:
 REm and '

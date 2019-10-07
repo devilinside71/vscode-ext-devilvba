@@ -1,0 +1,523 @@
+// prettier-ignore-next-line
+{
+  // Place your snippets for vba here. Each snippet is defined under a snippet name and has a prefix, body and
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+  // same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+  "VBA String variable": {
+    "prefix": "vbavs",
+    "body": [
+      "Dim s${1/(.*)/${1:/capitalize}/} As String",
+      "s${1/(.*)/${1:/capitalize}/} = vbNullString"
+    ],
+    "description": "String variable for VBA"
+  },
+  "VBA Private String variable": {
+    "prefix": "vbavps",
+    "body": [
+      "Private ms${1/(.*)/${1:/capitalize}/} As String",
+      "ms${1/(.*)/${1:/capitalize}/} = vbNullString"
+    ],
+    "description": "Private String variable for VBA"
+  },
+  "VBA Private Const String variable": {
+    "prefix": "vbavpcs",
+    "body": [
+      "Private Const cms${1/(.*)/${1:/capitalize}/} As String = vbNullString"
+    ],
+    "description": "Private Const String variable for VBA"
+  },
+  "VBA Long variable": {
+    "prefix": "vbavl",
+    "body": [
+      "Dim l${1/(.*)/${1:/capitalize}/} As Long",
+      "l${1/(.*)/${1:/capitalize}/} = 0"
+    ],
+    "description": "Long variable for VBA"
+  },
+  "VBA Private Long variable": {
+    "prefix": "vbavpl",
+    "body": [
+      "Private ml${1/(.*)/${1:/capitalize}/} As Long",
+      "ml${1/(.*)/${1:/capitalize}/} = 0"
+    ],
+    "description": "Private Long variable for VBA"
+  },
+  "VBA Private Const Long variable": {
+    "prefix": "vbavpcl",
+    "body": [
+      "Private Const cml${1/(.*)/${1:/capitalize}/} As Long = 0"
+    ],
+    "description": "Private Const Long variable for VBA"
+  },
+  "VBA Integer variable": {
+    "prefix": "vbavi",
+    "body": [
+      "Dim i${1/(.*)/${1:/capitalize}/} As Integer",
+      "i${1/(.*)/${1:/capitalize}/} = 0"
+    ],
+    "description": "Integer variable for VBA"
+  },
+  "VBA Private Integer variable": {
+    "prefix": "vbavpi",
+    "body": [
+      "Private mi${1/(.*)/${1:/capitalize}/} As Integer",
+      "mi${1/(.*)/${1:/capitalize}/} = 0"
+    ],
+    "description": "Private Integer variable for VBA"
+  },
+  "VBA Private Const Integer variable": {
+    "prefix": "vbavpci",
+    "body": [
+      "Private Const cmi${1/(.*)/${1:/capitalize}/} As Integer = 0"
+    ],
+    "description": "Private Const Integer variable for VBA"
+  },
+  "VBA Boolean variable": {
+    "prefix": "vbavb",
+    "body": [
+      "Dim b${1/(.*)/${1:/capitalize}/} As Boolean",
+      "b${1/(.*)/${1:/capitalize}/} = True"
+    ],
+    "description": "Boolean variable for VBA"
+  },
+  "VBA Private Boolean variable": {
+    "prefix": "vbavpb",
+    "body": [
+      "Private mb${1/(.*)/${1:/capitalize}/} As Boolean",
+      "mb${1/(.*)/${1:/capitalize}/} = True"
+    ],
+    "description": "Private Boolean variable for VBA"
+  },
+  "VBA Private Const Boolean variable": {
+    "prefix": "vbavpcb",
+    "body": [
+      "Private Const cmb${1/(.*)/${1:/capitalize}/} As Boolean = True"
+    ],
+    "description": "Private Const Boolean variable for VBA"
+  },
+  "VBA Double variable": {
+    "prefix": "vbavd",
+    "body": [
+      "Dim d${1/(.*)/${1:/capitalize}/} As Double",
+      "d${1/(.*)/${1:/capitalize}/} = 0.0"
+    ],
+    "description": "Double variable for VBA"
+  },
+  "VBA Private Double variable": {
+    "prefix": "vbavpd",
+    "body": [
+      "Private md${1/(.*)/${1:/capitalize}/} As Double",
+      "md${1/(.*)/${1:/capitalize}/} = 0.0"
+    ],
+    "description": "Private Double variable for VBA"
+  },
+  "VBA Private Const Double variable": {
+    "prefix": "vbavpcd",
+    "body": [
+      "Private Const cmd${1/(.*)/${1:/capitalize}/} As Double = 0.0"
+    ],
+    "description": "Private Const Double variable for VBA"
+  },
+  "VBA Variant variable": {
+    "prefix": "vbavv",
+    "body": [
+      "Dim v${1/(.*)/${1:/capitalize}/} As Variant",
+      "v${1/(.*)/${1:/capitalize}/} = 0"
+    ],
+    "description": "Variant variable for VBA"
+  },
+  "VBA Private Variant variable": {
+    "prefix": "vbavpv",
+    "body": [
+      "Private mv${1/(.*)/${1:/capitalize}/} As Variant",
+      "mv${1/(.*)/${1:/capitalize}/} = 0"
+    ],
+    "description": "Private Variant variable for VBA"
+  },
+  "VBA Private Const Variant variable": {
+    "prefix": "vbavpcv",
+    "body": [
+      "Private Const cmv${1/(.*)/${1:/capitalize}/} As Variant = 0"
+    ],
+    "description": "Private Const Variant variable for VBA"
+  },
+  "VBA Object variable": {
+    "prefix": "vbavo",
+    "body": [
+      "Dim o${1/(.*)/${1:/capitalize}/} As Object",
+      "o${1/(.*)/${1:/capitalize}/} = Nothing"
+    ],
+    "description": "Object variable for VBA"
+  },
+  "VBA Private Object variable": {
+    "prefix": "vbavpo",
+    "body": [
+      "Private mo${1/(.*)/${1:/capitalize}/} As Object",
+      "mo${1/(.*)/${1:/capitalize}/} = Nothing"
+    ],
+    "description": "Private Object variable for VBA"
+  },
+  "VBA Private Const Object variable": {
+    "prefix": "vbavpco",
+    "body": [
+      "Private Const cmo${1/(.*)/${1:/capitalize}/} As Object = Nothing"
+    ],
+    "description": "Private Const Object variable for VBA"
+  },
+  "VBA SheetName variable": {
+    "prefix": "vbavsh",
+    "body": [
+      "Dim sh${1/(.*)/${1:/capitalize}/} As String",
+      "sh${1/(.*)/${1:/capitalize}/} = \"Munka1\""
+    ],
+    "description": "SheetName variable for VBA"
+  },
+  "VBA Private SheetName variable": {
+    "prefix": "vbavpsh",
+    "body": [
+      "Private msh${1/(.*)/${1:/capitalize}/} As String",
+      "msh${1/(.*)/${1:/capitalize}/} = \"Munka1\""
+    ],
+    "description": "Private SheetName variable for VBA"
+  },
+  "VBA Private Const SheetName variable": {
+    "prefix": "vbavpcsh",
+    "body": [
+      "Private Const cmsh${1/(.*)/${1:/capitalize}/} As String = \"Munka1\""
+    ],
+    "description": "Private Const SheetName variable for VBA"
+  },
+  "VBA Worksheet variable": {
+    "prefix": "vbavwsh",
+    "body": [
+      "Dim wsh${1/(.*)/${1:/capitalize}/} As Worksheet",
+      "wsh${1/(.*)/${1:/capitalize}/} = ActiveSheet"
+    ],
+    "description": "Worksheet variable for VBA"
+  },
+  "VBA Private Worksheet variable": {
+    "prefix": "vbavpwsh",
+    "body": [
+      "Private mwsh${1/(.*)/${1:/capitalize}/} As Worksheet",
+      "mwsh${1/(.*)/${1:/capitalize}/} = ActiveSheet"
+    ],
+    "description": "Private Worksheet variable for VBA"
+  },
+  "VBA Private Const Worksheet variable": {
+    "prefix": "vbavpcwsh",
+    "body": [
+      "Private Const cmwsh${1/(.*)/${1:/capitalize}/} As Worksheet = ActiveSheet"
+    ],
+    "description": "Private Const Worksheet variable for VBA"
+  },
+  "VBA WorkbookName variable": {
+    "prefix": "vbavwb",
+    "body": [
+      "Dim wb${1/(.*)/${1:/capitalize}/} As String",
+      "wb${1/(.*)/${1:/capitalize}/} = \"ThisBook\""
+    ],
+    "description": "WorkbookName variable for VBA"
+  },
+  "VBA Private WorkbookName variable": {
+    "prefix": "vbavpwb",
+    "body": [
+      "Private mwb${1/(.*)/${1:/capitalize}/} As String",
+      "mwb${1/(.*)/${1:/capitalize}/} = \"ThisBook\""
+    ],
+    "description": "Private WorkbookName variable for VBA"
+  },
+  "VBA Private Const WorkbookName variable": {
+    "prefix": "vbavpcwb",
+    "body": [
+      "Private Const cmwb${1/(.*)/${1:/capitalize}/} As String = \"ThisBook\""
+    ],
+    "description": "Private Const WorkbookName variable for VBA"
+  },
+  "VBA Workbook variable": {
+    "prefix": "vbavwbk",
+    "body": [
+      "Dim wbk${1/(.*)/${1:/capitalize}/} As Workbook",
+      "wbk${1/(.*)/${1:/capitalize}/} = ActiveWorkbook"
+    ],
+    "description": "Workbook variable for VBA"
+  },
+  "VBA Private Workbook variable": {
+    "prefix": "vbavpwbk",
+    "body": [
+      "Private mwbk${1/(.*)/${1:/capitalize}/} As Workbook",
+      "mwbk${1/(.*)/${1:/capitalize}/} = ActiveWorkbook"
+    ],
+    "description": "Private Workbook variable for VBA"
+  },
+  "VBA Private Const Workbook variable": {
+    "prefix": "vbavpcwbk",
+    "body": [
+      "Private Const cmwbk${1/(.*)/${1:/capitalize}/} As Workbook = ActiveWorkbook"
+    ],
+    "description": "Private Const Workbook variable for VBA"
+  },
+  "VBA ColumnName variable": {
+    "prefix": "vbavcol",
+    "body": [
+      "Dim col${1/(.*)/${1:/capitalize}/} As String",
+      "col${1/(.*)/${1:/capitalize}/} = \"Header\""
+    ],
+    "description": "ColumnName variable for VBA"
+  },
+  "VBA Private ColumnName variable": {
+    "prefix": "vbavpcol",
+    "body": [
+      "Private mcol${1/(.*)/${1:/capitalize}/} As String",
+      "mcol${1/(.*)/${1:/capitalize}/} = \"Header\""
+    ],
+    "description": "Private ColumnName variable for VBA"
+  },
+  "VBA Private Const ColumnName variable": {
+    "prefix": "vbavpccol",
+    "body": [
+      "Private Const cmcol${1/(.*)/${1:/capitalize}/} As String = \"Header\""
+    ],
+    "description": "Private Const ColumnName variable for VBA"
+  },
+  "VBA ColumnNumber variable": {
+    "prefix": "vbavcolnum",
+    "body": [
+      "Dim col${1/(.*)/${1:/capitalize}/} As Long",
+      "col${1/(.*)/${1:/capitalize}/} = 1"
+    ],
+    "description": "ColumnNumber variable for VBA"
+  },
+  "VBA Private ColumnNumber variable": {
+    "prefix": "vbavpcolnum",
+    "body": [
+      "Private mcol${1/(.*)/${1:/capitalize}/} As Long",
+      "mcol${1/(.*)/${1:/capitalize}/} = 1"
+    ],
+    "description": "Private ColumnNumber variable for VBA"
+  },
+  "VBA Private Const ColumnNumber variable": {
+    "prefix": "vbavpccolnum",
+    "body": [
+      "Private Const cmcol${1/(.*)/${1:/capitalize}/} As Long = 1"
+    ],
+    "description": "Private Const ColumnNumber variable for VBA"
+  },
+  "VBA RowNumber variable": {
+    "prefix": "vbavrownum",
+    "body": [
+      "Dim row${1/(.*)/${1:/capitalize}/} As Long",
+      "row${1/(.*)/${1:/capitalize}/} = 1"
+    ],
+    "description": "RowNumber variable for VBA"
+  },
+  "VBA Private RowNumber variable": {
+    "prefix": "vbavprownum",
+    "body": [
+      "Private mrow${1/(.*)/${1:/capitalize}/} As Long",
+      "mrow${1/(.*)/${1:/capitalize}/} = 1"
+    ],
+    "description": "Private RowNumber variable for VBA"
+  },
+  "VBA Private Const RowNumber variable": {
+    "prefix": "vbavpcrownum",
+    "body": [
+      "Private Const cmrow${1/(.*)/${1:/capitalize}/} As Long = 1"
+    ],
+    "description": "Private Const RowNumber variable for VBA"
+  },
+  "VBA Function": {
+    "prefix": [
+      "vbafunc"
+    ],
+    "body": [
+      "Private Function ${1/(.*)/${1:/capitalize}/}(${2:Parameter} As ${3|String,Long,Boolean,Integer,Double|}) As ${4|String,Long,Boolean,Integer,Double|}",
+      "  '${5:Description}",
+      "  'Parameters:",
+      "  '           {$3} $2",
+      "  'Returns:{$4}",
+      "  'Created by: Laszlo Tamas",
+      "  'Licence: MIT",
+      "",
+      "  Dim retVal As $4",
+      "",
+      "  On Error GoTo FUNC_ERR",
+      "",
+      "  'Code here",
+      "",
+      "  ${1/(.*)/${1:/capitalize}/} = retVal",
+      "  '---------------",
+      "FUNC_EXIT:",
+      "  On Error GoTo 0",
+      "  Exit Function",
+      "FUNC_ERR:",
+      "  Debug.Print \"Error in Function ${1/(.*)/${1:/capitalize}/}\"",
+      "  If Err.Number Then",
+      "    Call clLogger.logERROR(Err.Description, \"${1/(.*)/${1:/capitalize}/}\")",
+      "  End If",
+      "  Resume FUNC_EXIT",
+      "End Function",
+      "Private Sub ${1/(.*)/${1:/capitalize}/}Test",
+      "  'Test procedure for ${1/(.*)/${1:/capitalize}/}",
+      "  '$5",
+      "  Dim dtmStartTime As Date",
+      "  Dim testVal As $3",
+      "  testVal = Nothing",
+      "  dtmStartTime = Now()",
+      "  Call clLogger.logDEBUG(\"Function $1 test: >> \" & ${1/(.*)/${1:/capitalize}/}(testVal), \"${1/(.*)/${1:/capitalize}/}Test\")",
+      "End Sub"
+    ],
+    "description": "Function for VBA"
+  },
+  "VBA Subroutine": {
+    "prefix": [
+      "vbasub",
+      "vbaproc"
+    ],
+    "body": [
+      "Private Sub ${1/(.*)/${1:/capitalize}/}(${2:Parameter} As ${3|String,Long,Boolean,Integer,Double|})",
+      "  '${4:Description}",
+      "  'Parameters:",
+      "  '           {$3} $2",
+      "  'Created by: Laszlo Tamas",
+      "  'Licence: MIT",
+      "",
+      "  On Error GoTo PROC_ERR",
+      "",
+      "  'Code here",
+      "",
+      "  '---------------",
+      "PROC_EXIT:",
+      "  On Error GoTo 0",
+      "  Exit Sub",
+      "PROC_ERR:",
+      "  Debug.Print \"Error in Sub ${1/(.*)/${1:/capitalize}/}\"",
+      "  If Err.Number Then",
+      "    Call clLogger.logERROR(Err.Description, \"${1/(.*)/${1:/capitalize}/}\")",
+      "  End If",
+      "  Resume PROC_EXIT",
+      "End Sub",
+      "Private Sub $1Test",
+      "  'Test procedure for ${1/(.*)/${1:/capitalize}/}",
+      "  '$4",
+      "  Dim testVal As $3",
+      "  Dim dtmStartTime As Date",
+      "  testVal = Nothing",
+      "  dtmStartTime = Now()",
+      "  Call ${1/(.*)/${1:/capitalize}/}(testVal)",
+      "End Sub"
+    ],
+    "description": "Procedure for VBA"
+  },
+  "VBA For loop asc": {
+    "prefix": "vbafora",
+    "body": [
+      "Dim ${1:i} As Long",
+      "For $1 = 0 to 100",
+      "  'Code here",
+      "Next $1"
+    ],
+    "description": "For loop (ascending) for VBA"
+  },
+  "VBA For loop desc": {
+    "prefix": "vbaford",
+    "body": [
+      "Dim ${1:i} As Long",
+      "For $1 = 100 to 0 Step -1",
+      "  'Code here",
+      "Next $1"
+    ],
+    "description": "For loop (descending) for VBA"
+  },
+  "VBA MsgBox Confirm": {
+    "prefix": "vbamsgconf",
+    "body": [
+      "Dim mgConfirm As Integer",
+      "",
+      "mgConfirm = MsgBox(\"${1:Are you sure?}\", 36, \"${2:Confirm action}\")",
+      "Select Case mgConfirm",
+      "  Case vbYes",
+      "    'code",
+      "    break",
+      "  Case vbNo",
+      "    'code",
+      "    break",
+      "End Select"
+    ],
+    "description": "Confirmation messagebox for VBA"
+  },
+  "VBA MsgBox Message": {
+    "prefix": "vbamsgmess",
+    "body": [
+      "Dim mgMessage As Integer",
+      "",
+      "mgMessage = MsgBox(\"${1:This is the message?}\", 64, \"${2:Message Title}\")"
+    ],
+    "description": "Messagebox for VBA"
+  },
+  "VBA Active Keyboard EN-HU-TR": {
+    "prefix": "vbakeybHUNENGTUR",
+    "body": [
+      "'----------------------",
+      "'Change keyboard layout",
+      "'Keyboards must be installed to Windows",
+      "'----------------------",
+      "Private Sub SwitchToENG()",
+      "  'Switch to English",
+      "  Call ActivateKeyboardLayout(1033, 0)",
+      "End Sub",
+      "Private Sub SwitchToHUN()",
+      "  'Switch to Hungarian",
+      "  Call ActivateKeyboardLayout(1038, 0)",
+      "End Sub",
+      "Private Sub SwitchToTUR()",
+      "  'Switch to Turkish",
+      "  Call ActivateKeyboardLayout(1055, 0)",
+      "End Sub"
+    ],
+    "description": "Set active keyboard to HUN, ENG and TUR for VBA"
+  },
+  "VBA Class Property": {
+    "prefix": "vbaprop",
+    "body": [
+      "Private m_${1/(.*)/${1:/capitalize}/} As ${2|String,Long,Boolean,Integer,Double|}",
+      "Private Const cm${1/(.*)/${1:/capitalize}/} As $2 = Nothing",
+      "",
+      "Public Property Let ${1/(.*)/${1:/capitalize}/}(${1/(.*)/${1:/capitalize}/}Param As $2)",
+      "  On Error GoTo PROP_ERR",
+      "  m_${1/(.*)/${1:/capitalize}/} = ${1/(.*)/${1:/capitalize}/}Param",
+      "  If cmbDebugMode Then",
+      "    Call clLogger.logDEBUG(\"Property.${1/(.*)/${1:/capitalize}/} has been set to: \" & m_${1/(.*)/${1:/capitalize}/}, \"Property.Let.${1/(.*)/${1:/capitalize}/}\")",
+      "  End If",
+      "PROP_EXIT:",
+      "  Exit Property",
+      "PROP_ERR:",
+      "  If Err.Number Then",
+      "    Call clLogger.logERROR(Err.Description, \"Property.Let.${1/(.*)/${1:/capitalize}/}\")",
+      "  End If",
+      "  Resume PROP_EXIT",
+      "End Property",
+      "Public Property Get ${1/(.*)/${1:/capitalize}/}() As $2",
+      "  On Error GoTo PROP_ERR",
+      "  ${1/(.*)/${1:/capitalize}/} = m_${1/(.*)/${1:/capitalize}/}",
+      "PROP_EXIT:",
+      "  Exit Property",
+      "PROP_ERR:",
+      "  If Err.Number Then",
+      "    Call clLogger.logERROR(Err.Description, \"Property.Get.${1/(.*)/${1:/capitalize}/}\")",
+      "  End If",
+      "  Resume PROP_EXIT",
+      "End Property"
+    ],
+    "description": "Class Property for VBA"
+  }
+}

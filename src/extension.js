@@ -107,6 +107,7 @@ function activate(context) {
         for (let index = 0; index < lines.length; index++) {
           let line = lines[index];
           line = addSpaceToOperators(line);
+          line = formatSpecialLine(line);
           line = removeSpaces(line);
           line = formatConstDeclarationLine(line);
           line = formatSubLine(line);
@@ -128,27 +129,18 @@ function activate(context) {
           editBuilder.replace(selection, newLines);
         });
       }
-      function formatVBACommand(line) {
-        var k;
-        var ret = line;
-        var regex;
-        for (k = 0; k < commandsUp.length; k++) {
-          regex = new RegExp('\\b' + commandsUp[k] + '\\b', 'gi');
-          ret = ret.replace(regex, commandsUp[k]);
-        }
-        return ret;
-      }
 
       function getIndentedLine(line) {
         var ret = getIndent(currentIndent) + line.trim();
         var regex;
         var match;
-        regex = /^\s*(private|public|global|option explicit|end sub|end function|end property|\'#endregion|\'#region)\b/gi;
+        regex = /^\s*(private|public|global|option explicit|end sub|end function|end property|\'#region|\'#endregion)\b/gi;
         match = regex.exec(line);
         if (match !== null) {
           ret = line.trim();
           // console.log('MainDeclare Indent:' + currentIndent + ' ' + line);
         }
+
         // Main line
         regex = /^\s*(private sub|private function|public sub|public function|global sub|global function|sub|function|private property|public property|global property)\b/gi;
         match = regex.exec(line);
@@ -232,6 +224,26 @@ function activate(context) {
         }
         return ret;
       }
+      function formatSpecialLine(line) {
+        var ret = line;
+        var mainRegexp;
+        mainRegexp = /^\s*\'\s*#\s*(endregion|region)\b(.*)$/gi;
+        match = mainRegexp.exec(line);
+        try {
+          ret = "'#" + match[1] + ' ' + match[2];
+        } catch (error) {}
+        return ret;
+      }
+      function formatVBACommand(line) {
+        var k;
+        var ret = line;
+        var regex;
+        for (k = 0; k < commandsUp.length; k++) {
+          regex = new RegExp('\\b' + commandsUp[k] + '\\b', 'gi');
+          ret = ret.replace(regex, commandsUp[k]);
+        }
+        return ret;
+      }
 
       function formatVBAFunction(line) {
         var k;
@@ -283,6 +295,7 @@ function activate(context) {
         }
         return ret;
       }
+
       function formatFuncLine(line) {
         var ret = line;
         var subret = '';

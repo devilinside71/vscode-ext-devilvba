@@ -20,17 +20,30 @@
         "url": "https://github.com/devilinside71/something"
     },
     "contributes": {
-        "languages": [{
-            "id": "vba",
-            "aliases": ["VBA", "vba"],
-            "extensions": [".bas",".cls",".frm",".sht",".wbk"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "vba",
-            "scopeName": "source.vba",
-            "path": "./syntaxes/vba-syntax.json"
-        }],
+        "languages": [
+            {
+                "id": "vba",
+                "aliases": [
+                    "VBA",
+                    "vba"
+                ],
+                "extensions": [
+                    ".bas",
+                    ".cls",
+                    ".frm",
+                    ".sht",
+                    ".wbk"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "vba",
+                "scopeName": "source.vba",
+                "path": "./syntaxes/vba-syntax.json"
+            }
+        ],
         "snippets": [
             {
                 "language": "vba",
@@ -42,7 +55,27 @@
                 "command": "extension.VBAFormatterSelected",
                 "title": "Format selected VBA code"
             }
-
-        ]
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "extension.VBAFormatterSelected",
+                    "when": "resourceLangId == vba",
+                    "group": "navigation"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "vscode-ext-devilvba",
+            "properties": {
+                "myvba01.indentSize": {
+                    "type": "number",
+                    "default": 2,
+                    "minimum": 0,
+                    "maximum": 10,
+                    "description": "Indent size in characters."
+                }
+            }
+        }
     }
 }

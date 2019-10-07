@@ -20,7 +20,9 @@ function activate(context) {
   console.log(
     'Congratulations, your extension "vscode-ext-devilvba" is now active!'
   );
-
+  const indentSize = vscode.workspace
+    .getConfiguration()
+    .get('vscode-ext-devilvba.indentSize');
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with  registerCommand
   // The commandId parameter must match the command field in package.json
@@ -45,7 +47,7 @@ function activate(context) {
         'Select Case', 'SendKeys', 'Set', 'SetAttr', 'Static', 'Stop', 'Sub',
         'Time', 'Type', 'Unload', 'While', 'Wend', 'Width #', 'With', 'Write #',
         'End Sub', 'End Function', 'Debug.Print', 'MsgBox', 'Wait', 'Private Sub',
-        '#If', '#Else', '#End If', 'Case', 'End Select', 'End Property');
+        '#If', '#Else', '#End If', 'Case', 'End Select', 'End Property', 'Property');
 
       // prettier-ignore
       var funcsUp = new Array('Abs', 'Array', 'Asc', 'Atn', 'CBool', 'CByte',
@@ -212,7 +214,7 @@ function activate(context) {
           underscoreCount = 0;
           // console.log('New indent:' + currentIndent);
         }
-      
+
         regex = /^\s*(next|end if|#end if|wend|end with|loop)\b/gi;
         match = regex.exec(line);
         if (match !== null) {
@@ -444,7 +446,7 @@ function activate(context) {
           currentIndent = 0;
         }
         if (num > 0) {
-          for (index = 0; index < 2; index++) {
+          for (index = 0; index < indentSize; index++) {
             indent += ' ';
           }
           for (i = 0; i < num; i++) {

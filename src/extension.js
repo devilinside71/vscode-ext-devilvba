@@ -88,6 +88,8 @@ function activate(context) {
 
       var currentIndent = 0;
       var firstCase = false;
+      var underscored = true;
+      var underscoreCount = 0;
 
       // Get the active text editor
       let editor = vscode.window.activeTextEditor;
@@ -153,7 +155,7 @@ function activate(context) {
           ret = line.trim();
           // console.log('Main Indent:' + currentIndent + ' ' + line);
         }
-        regex = /^\s*(for|while|with)\b/gi;
+        regex = /^\s*(for|while|with|do while)\b/gi;
         match = regex.exec(line);
         if (match !== null) {
           ret = getIndent(currentIndent) + line.trim();
@@ -188,15 +190,30 @@ function activate(context) {
           ret = getIndent(currentIndent) + line.trim();
           // console.log('End Select Indent:' + currentIndent + ' ' + line);
         }
-        regex = /\s*(then| _|#then)\b\s*$/gi;
+        regex = /\s*(then|#then)\b\s*$/gi;
         match = regex.exec(line);
         if (match !== null) {
           ret = getIndent(currentIndent) + line.trim();
           currentIndent++;
           // console.log('Then Indent:' + currentIndent + ' ' + line);
         }
-
-        regex = /^\s*(next|end if|#end if|wend|end with)\b/gi;
+        regex = /\s*( _)\b\s*$/gi;
+        match = regex.exec(line);
+        if (match !== null) {
+          ret = getIndent(currentIndent) + line.trim();
+          currentIndent++;
+          underscoreCount++;
+          underscored = true;
+          // console.log(underscoreCount);
+        } else if (underscored) {
+          // console.log('Not undersored ' + line);
+          underscored = false;
+          currentIndent -= underscoreCount;
+          underscoreCount = 0;
+          // console.log('New indent:' + currentIndent);
+        }
+      
+        regex = /^\s*(next|end if|#end if|wend|end with|loop)\b/gi;
         match = regex.exec(line);
         if (match !== null) {
           currentIndent--;

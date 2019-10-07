@@ -1,5 +1,10 @@
 TODO:
 
+General:
+Full text, not only selection
+register API
+Settings
+
 language-configuration:
 REm and '
 

@@ -17,7 +17,9 @@ const vscode = require('vscode');
 function activate(context) {
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
-  console.log('Congratulations, your extension "devil-vba01" is now active!');
+  console.log(
+    'Congratulations, your extension "vscode-ext-devilvba" is now active!'
+  );
 
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with  registerCommand
@@ -87,11 +89,6 @@ function activate(context) {
       var currentIndent = 0;
       var firstCase = false;
 
-      // Display a message box to the user
-      vscode.window.showInformationMessage(
-        "Command 'Format selected VBA code' has been called"
-      );
-
       // Get the active text editor
       let editor = vscode.window.activeTextEditor;
 
@@ -119,6 +116,10 @@ function activate(context) {
           line = getIndentedLine(line);
           newLines += line + '\n';
         }
+        // Display a message box to the user
+        vscode.window.showInformationMessage(
+          "Command 'Format selected VBA code' completed"
+        );
         editor.edit(editBuilder => {
           editBuilder.replace(selection, newLines);
         });
@@ -437,7 +438,6 @@ function activate(context) {
       }
     }
   );
-
 
   context.subscriptions.push(disposable);
 }

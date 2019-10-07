@@ -13,6 +13,14 @@
   // 	],
   // 	"description": "Log output to console"
   // }
+  "VBA region block": {
+    "prefix": "vbareg",
+    "body": [
+      "'#region ${1/(.*)/${1:/capitalize}/}",
+      "'#endregion ${1/(.*)/${1:/capitalize}/}"
+    ],
+    "description": "Region block for VBA"
+  },
   "VBA String variable": {
     "prefix": "vbavs",
     "body": [

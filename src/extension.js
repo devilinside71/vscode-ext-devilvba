@@ -143,7 +143,7 @@ function activate(context) {
         var ret = getIndent(currentIndent) + line.trim();
         var regex;
         var match;
-        regex = /^\s*(private|public|global|option explicit|end sub|end function|end property)\b/gi;
+        regex = /^\s*(private|public|global|option explicit|end sub|end function|end property|\'#endregion|\'#region)\b/gi;
         match = regex.exec(line);
         if (match !== null) {
           ret = line.trim();

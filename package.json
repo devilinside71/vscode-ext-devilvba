@@ -1,0 +1,25 @@
+{
+    "name": "vscode-ext-devilvba",
+    "displayName": "vscode-ext-devilvba",
+    "description": "VBA formatter, highlighter and snippets",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.38.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "vba",
+            "aliases": ["VBA", "vba"],
+            "extensions": [".bas",".cls",".frm",".sht",".wbk"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "vba",
+            "scopeName": "source.vba",
+            "path": "./syntaxes/vba-syntax.json"
+        }]
+    }
+}

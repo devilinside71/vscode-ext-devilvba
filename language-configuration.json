@@ -71,7 +71,7 @@
     },
     "indentationRules": {
         "increaseIndentPattern": {
-            "pattern": "then(\\s*|\\s*!.*)$|^\\s*(function|sub|private function|public function|private sub|public sub|do|case|select\\s*case|for|do)\\b.*$|\\s*(else|else\\s*if)\\b.*$",
+            "pattern": "then(\\s*|\\s*!.*)$|^\\s*(function|sub|private function|public function|private sub|public sub|do|case|select\\s*case|for|do while)\\b.*$|\\s*(else|else\\s*if)\\b.*$",
             "flags": "i"
         },
         "decreaseIndentPattern": {

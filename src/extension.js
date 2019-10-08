@@ -44,14 +44,14 @@ function activate(context) {
         'End Select', 'End Sub', 'Erase', 'Error', 'Exit Do', 'Exit For',
         'Exit Function', 'Exit Property', 'Exit Sub', 'FileCopy', 'For', 'For Each',
         'Function', 'Get', 'GoSub', 'GoTo', 'If', 'Iif', 'Input #', 'Kill', 'Let',
-        'Line Input #', 'Load', 'Lock', 'Loop', 'Mac', 'Mid', 'MkDir', 'MsgBox',
+        'Line Input #', 'Load', 'Lock', 'Loop', 'Mid', 'MkDir', 'MsgBox',
         'Name', 'Next', 'On', 'On Error', 'Open', 'Option Base', 'Option Compare',
         'Option Explicit', 'Option Private', 'Output', 'Print #', 'Private',
         'Private Sub', 'Property Get', 'Property Let', 'Property Set', 'Public',
         'Put', 'REM', 'RaiseEvent', 'Randomize', 'ReDim', 'Reset', 'Resume', 'Return',
         'RmDir', 'SaveSetting', 'Seek', 'Select Case', 'SendKeys', 'Set', 'SetAttr',
-        'Static', 'Stop', 'Sub', 'Then', 'Time', 'Type', 'Unload', 'Unlock', 'Vba6',
-        'Vba7', 'Wait', 'Wend', 'While', 'Width #', 'Win32', 'Win64', 'With', 'Write #');
+        'Static', 'Stop', 'Sub', 'Then', 'Time', 'Type', 'Unload', 'Unlock',
+        'Wait', 'Wend', 'While', 'Width #', 'With', 'Write #');
       // prettier-ignore
       var funcsUp = new Array('Abs', 'Array', 'Asc', 'Atn', 'CBool', 'CByte', 'CCur',
         'CDate', 'CDbl', 'CDec', 'CInt', 'CLng', 'CSng', 'CStr', 'CVErr', 'CVar',
@@ -86,7 +86,16 @@ function activate(context) {
         'Name', 'Open', 'ScreenUpdating', 'Select', 'String', 'Value', 'getCurrentSelection');
       // prettier-ignore
       var subobjectsUp = new Array('Cells', 'Range', 'Sheets');
-
+      // prettier-ignore
+      var constUp = new Array('vbTrue', 'vbFalse', 'vbCr', 'vbCrLf', 'vbFormFeed',
+        'vbLf', 'vbNewLine', 'vbNullChar', 'vbNullString', 'vbTab', 'vbVerticalTab',
+        'vbBinaryCompare', 'vbTextCompare', 'vbSunday', 'vbMonday', 'vbTuesday',
+        'vbWednesday', 'vbThursday', 'vbFriday', 'vbSaturday', 'vbUseSystemDayOfWeek',
+        'vbFirstJan1', 'vbFirstFourDays', 'vbFirstFullWeek', 'vbGeneralDate', 'vbLongDate',
+        'vbShortDate', 'vbLongTime', 'vbShortTime', 'vbObjectError', 'vbEmpty', 'vbNull',
+        'vbInteger', 'vbLong', 'vSingle', 'vbDouble', 'vbCurrency', 'vbDate', 'vbString',
+        'vbObject', 'vbError', 'vbBoolean', 'vbVariant', 'vbDataObject', 'vbDecimal',
+        'vbByte', 'vbArray', 'Mac', 'Win64', 'Win32', 'Vba6', 'Vba7');
       // #endregion
 
       var currentIndent = 0;
@@ -120,6 +129,7 @@ function activate(context) {
           line = formatVBAObject(line);
           line = formatVBAActivity(line);
           line = formatVBASubobject(line);
+          line = formatVBAConstant(line);
           line = getIndentedLine(line);
           newLines += line + '\n';
         }
@@ -275,6 +285,21 @@ function activate(context) {
         for (k = 0; k < commandsUp.length; k++) {
           regex = new RegExp('\\b' + commandsUp[k] + '\\b', 'gi');
           ret = ret.replace(regex, commandsUp[k]);
+        }
+        return ret;
+      }
+
+      /**
+       * Format built-in constants
+       * @param  {} line
+       */
+      function formatVBAConstant(line) {
+        var k;
+        var ret = line;
+        var regex;
+        for (k = 0; k < constUp.length; k++) {
+          regex = new RegExp('\\b' + constUp[k] + '\\b', 'gi');
+          ret = ret.replace(regex, constUp[k]);
         }
         return ret;
       }

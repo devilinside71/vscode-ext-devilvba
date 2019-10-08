@@ -7,30 +7,76 @@
     },
     // symbols used as brackets
     "brackets": [
-        ["{", "}"],
-        ["[", "]"],
-        ["(", ")"]
+        [
+            "{",
+            "}"
+        ],
+        [
+            "[",
+            "]"
+        ],
+        [
+            "(",
+            ")"
+        ]
     ],
     // symbols that are auto closed when typing
     "autoClosingPairs": [
-        ["{", "}"],
-        ["[", "]"],
-        ["(", ")"],
-        ["\"", "\""],
+        [
+            "{",
+            "}"
+        ],
+        [
+            "[",
+            "]"
+        ],
+        [
+            "(",
+            ")"
+        ],
+        [
+            "\"",
+            "\""
+        ],
         // ["'", "'"]
     ],
     // symbols that that can be used to surround a selection
     "surroundingPairs": [
-        ["{", "}"],
-        ["[", "]"],
-        ["(", ")"],
-        ["\"", "\""],
-        ["'", "'"]
+        [
+            "{",
+            "}"
+        ],
+        [
+            "[",
+            "]"
+        ],
+        [
+            "(",
+            ")"
+        ],
+        [
+            "\"",
+            "\""
+        ],
+        [
+            "'",
+            "'"
+        ]
     ],
     "folding": {
         "markers": {
-          "start": "^\\s*\\'#region\\b",
-          "end": "^\\s*\\'#endregion\\b"
+            "start": "^\\s*\\'#region\\b",
+            "end": "^\\s*\\'#endregion\\b"
         }
-      },
+    },
+    "indentationRules": {
+        "increaseIndentPattern": {
+            "pattern": "then(\\s*|\\s*!.*)$|^\\s*(function|sub|private function|public function|private sub|public sub|do|case|select\\s*case|for|do)\\b.*$|\\s*(else|else\\s*if)\\b.*$",
+            "flags": "i"
+        },
+        "decreaseIndentPattern": {
+            "pattern": "^\\s(end if).*$",
+            "flags": "i"
+        }
+    }
 }

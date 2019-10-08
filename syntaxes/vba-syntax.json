@@ -90,6 +90,11 @@
       "name": "keyword.control.asp"
     },
     {
+      "match":
+        "(?i:(#If|#Then|#Else|#ElseIf|#Else If|#End If)\\b)",
+      "name": "keyword.control.asp"
+    },
+    {
       "match": "(?i:\\b(Mod|And|Not|Is|Or|Xor|as)\\b)",
       "name": "keyword.operator.asp"
     },

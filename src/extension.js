@@ -77,7 +77,7 @@ function activate(context) {
       // prettier-ignore
       var typesUp = new Array(' As Boolean', ' As Date', ' As Double', ' As Integer',
         ' As Long', ' As Object', ' As String', ' As Variant', ' As WorkBook',
-        ' As WorkSheet');
+        ' As WorkSheet', ' As Byte', ' As Single', ' As Currency', ' As Decimal');
       // prettier-ignore
       var objectsUp = new Array('ActiveSheet', 'ActiveWorkbook', 'BasicLibraries',
         'CurrentController', 'GlobalScope', 'RunAutoMacros', 'StarDesktop', 'ThisComponent');
@@ -256,7 +256,7 @@ function activate(context) {
         }
         return ret;
       }
-      
+
       // #region Format keywords
 
       /**

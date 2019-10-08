@@ -68,7 +68,7 @@
         "configuration": {
             "title": "vscode-ext-devilvba",
             "properties": {
-                "myvba01.indentSize": {
+                "vscode-ext-devilvba.indentSize": {
                     "type": "number",
                     "default": 2,
                     "minimum": 0,

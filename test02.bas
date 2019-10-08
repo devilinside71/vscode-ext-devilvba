@@ -1,10 +1,10 @@
-sub alma 
- sRes = "text"
- sRes = "text"
- sRes = "text"
- sRes = "text"
- sRes = "text"
- sRes = "text"
+Sub alma
+  sRes = "text"
+  sRes = "text"
+  sRes = "text"
+  sRes = "text"
+  sRes = "text"
+  sRes = "text"
   'Code here
   For i = 1 To 30
     sCell = Trim(CStr(InvetoryBook.Sheets(cmshCoverPage).Cells(i, 1)))
@@ -14,51 +14,57 @@ sub alma
       Exit For
     End If
   Next i
+  
+Private Function Add2Inventory( asa As String) As alma
+global Function Add2Inventory(asa As String) As String
+Function Add2Inventory (asa As String, klk As ghgjg) As Integer
+Function fetfet (asa As String, klk As ghgjg, Optional hjh = "dsd" ) As Integer
+Sub mnan(jsdh As String, Optional ghg = 2)
+  If sdakjhdsakj Then
+    dsdsds
+  Else
+    gfdgfd
+    REM kfljdsl
+  End If
+  If sdakjhdsakj Then
+    If lksjdhsak Then dsakjdhsa:ikdkjsald
+    If jdksad Then sdakjsadh:kdsjd Else kdjlsakdjlsa:lélé
+    If lkjsaldkjsa Then ghgjhgds ElseIf kfdajhsdkjsa Then
+      If lkjsaldkjsa Then ElseIf kfdajhsdkjsa Then skjdksaj:lélk Else dskajdhksa
+      #If sdakjhdsakj #Then
+        #If lksjdhsak #Then dsakjdhsa:ikdkjsald
+        #If jdksad #Then sdakjsadh:kdsjd #Else kdjlsakdjlsa:lélé
+        mnbsmbmmmn Asc(kfdhkj )
+        ActiveWorkbook.Cells( hjhfd )
+        Select Case ( jdksah)
+          Case 3:
+            sdadsa
+          Case 4:
+            fjdsfjhds
+        End Select
+        
+        a = Sheets("alma").Cells(i,3)
+        b = Cells(z,5)
+        
+        pos < InStr(ws.Name, "Inventory")
+        pos & InStr(ws.Name, "Inventory") _
+          pos + InStr(ws.Name, "Inventory") _
+            pos - InStr(ws.Name, "Inventory")
+        pos / InStr(ws.Name, "Inventory")
+        pos => InStr(ws.Name, "Inventory") _
+          pos =< InStr(ws.Name, "Inventory")
+        pos <> InStr(ws.Name, "Inventory")
+        pos >= InStr(ws.Name, "Inventory")
+        pos <= InStr(ws.Name, "Inventory")
+        pos <> InStr(ws.Name, "Inventory")
+        pos = InStr(ws.Name, "Inventory")
+        
+        
+        
+        
+        
+        '#region Sklfjdsf
 
-     Private function Add2Inventory(   asa As String)as alma
-        global function Add2Inventory(asa As String)  aS striNg
- function Add2Inventory     (asa As  StrIng, klk as ghgjg) As InTeGer
-function fetfet     (asa As  StrIng, klk as ghgjg, optional hjh="dsd" ) As InTeGer
- sub mnan(jsdh as string, optional ghg=2)
-if sdakjhdsakj then
-dsdsds
-else
-gfdgfd
-rem kfljdsl
-end if
-if sdakjhdsakj   then
-if lksjdhsak then dsakjdhsa:ikdkjsald
-if jdksad then sdakjsadh:kdsjd else kdjlsakdjlsa:lélé
-if lkjsaldkjsa then ghgjhgds elseif kfdajhsdkjsa then
-if lkjsaldkjsa then elseif kfdajhsdkjsa then skjdksaj:lélk else dskajdhksa
-#if sdakjhdsakj #then
-#if lksjdhsak #then dsakjdhsa:ikdkjsald
-#if jdksad #then sdakjsadh:kdsjd #else kdjlsakdjlsa:lélé
-mnbsmbmmmn asc (kfdhkj   )
-activeworkbook. cells    ( hjhfd )
-select case (     jdksah)
-  case 3:
-sdadsa
-case 4:
-fjdsfjhds
-end select
-
-a=sheets("alma").cells(i,3)
-b=cells (z,5)
-
-pos <InStr(ws.Name, "Inventory")
-pos &InStr(ws.Name, "Inventory") _
-pos +InStr(ws.Name, "Inventory") _
-pos -InStr(ws.Name, "Inventory")
-pos /InStr(ws.Name, "Inventory")
-pos = >InStr(ws.Name, "Inventory") _
-pos = < InStr(ws.Name, "Inventory")
-pos <>InStr(ws.Name, "Inventory")
-pos> =InStr(ws.Name, "Inventory")
-pos <=InStr(ws.Name, "Inventory")
-pos <>InStr(ws.Name, "Inventory")
-pos =InStr(ws.Name, "Inventory")
-
-
-
-
+        
+        '#endregion Sklfjdsf
+        

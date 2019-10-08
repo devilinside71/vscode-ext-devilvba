@@ -44,11 +44,11 @@ fjdsfjhds
 end select
 
 pos <InStr(ws.Name, "Inventory")
-pos &InStr(ws.Name, "Inventory")
-pos +InStr(ws.Name, "Inventory")
+pos &InStr(ws.Name, "Inventory") _
+pos +InStr(ws.Name, "Inventory") _
 pos -InStr(ws.Name, "Inventory")
 pos /InStr(ws.Name, "Inventory")
-pos = >InStr(ws.Name, "Inventory")
+pos = >InStr(ws.Name, "Inventory") _
 pos = < InStr(ws.Name, "Inventory")
 pos <>InStr(ws.Name, "Inventory")
 pos> =InStr(ws.Name, "Inventory")

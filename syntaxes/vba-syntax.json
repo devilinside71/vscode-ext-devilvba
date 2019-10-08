@@ -95,6 +95,11 @@
       "name": "keyword.control.asp"
     },
     {
+      "match":
+        "(?i:\\b(Win64|Win32|Mac|Vba6|Vba7)\\b)",
+      "name": "storage.type.asp"
+    },
+    {
       "match": "(?i:\\b(Mod|And|Not|Is|Or|Xor|as)\\b)",
       "name": "keyword.operator.asp"
     },
@@ -116,7 +121,7 @@
     },
     {
       "match":
-        "(?i:\\s*\\b(Call|Class|Const|Dim|Redim|Function|Sub|Private Sub|Public Sub|End sub|End Function|Set|Let|Get|New|Randomize|Option Explicit|On Error Resume Next|On Error GoTo|ByRef|ByVal|Public Function|Private Function|Preserve|Public Property|End Property)\\b\\s*)",
+        "(?i:\\s*\\b(Call|Class|Const|Dim|Redim|Function|Sub|Private Sub|Public Sub|End sub|End Function|Set|Let|Get|New|Randomize|Option Explicit|On Error Resume Next|On Error GoTo|ByRef|ByVal|Public Function|Private Function|Preserve|Public Property|End Property|Resume)\\b\\s*)",
       "name": "storage.type.asp"
     },
     {

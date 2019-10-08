@@ -52,7 +52,6 @@ function activate(context) {
         'RmDir', 'SaveSetting', 'Seek', 'Select Case', 'SendKeys', 'Set', 'SetAttr',
         'Static', 'Stop', 'Sub', 'Then', 'Time', 'Type', 'Unload', 'Unlock', 'Vba6',
         'Vba7', 'Wait', 'Wend', 'While', 'Width #', 'Win32', 'Win64', 'With', 'Write #');
-
       // prettier-ignore
       var funcsUp = new Array('Abs', 'Array', 'Asc', 'Atn', 'CBool', 'CByte', 'CCur',
         'CDate', 'CDbl', 'CDec', 'CInt', 'CLng', 'CSng', 'CStr', 'CVErr', 'CVar',

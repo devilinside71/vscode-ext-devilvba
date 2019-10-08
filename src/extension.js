@@ -315,7 +315,7 @@ function activate(context) {
         var ret = line;
         var regex;
         for (k = 0; k < funcsUp.length; k++) {
-          regex = new RegExp('\\b' + funcsUp[k] + '\\s*\\(', 'gi');
+          regex = new RegExp('\\b' + funcsUp[k] + '\\s*\\(\\s*\\b', 'gi');
           ret = ret.replace(regex, funcsUp[k] + '(');
         }
         return ret;
@@ -377,6 +377,10 @@ function activate(context) {
         for (k = 0; k < subobjectsUp.length; k++) {
           regex = new RegExp('\\.\\s*' + subobjectsUp[k] + '\\s*\\(', 'gi');
           ret = ret.replace(regex, '.' + subobjectsUp[k] + '(');
+        }
+        for (k = 0; k < subobjectsUp.length; k++) {
+          regex = new RegExp('\\b' + subobjectsUp[k] + '\\s*\\(', 'gi');
+          ret = ret.replace(regex, subobjectsUp[k] + '(');
         }
         return ret;
       }

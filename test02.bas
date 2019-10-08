@@ -34,14 +34,17 @@ if lkjsaldkjsa then elseif kfdajhsdkjsa then skjdksaj:lélk else dskajdhksa
 #if sdakjhdsakj #then
 #if lksjdhsak #then dsakjdhsa:ikdkjsald
 #if jdksad #then sdakjsadh:kdsjd #else kdjlsakdjlsa:lélé
-mnbsmbmmmn asc (kfdhkj )
-activeworkbook. cells    ( hjhfd)
-select case (jdksah)
+mnbsmbmmmn asc (kfdhkj   )
+activeworkbook. cells    ( hjhfd )
+select case (     jdksah)
   case 3:
 sdadsa
 case 4:
 fjdsfjhds
 end select
+
+a=sheets("alma").cells(i,3)
+b=cells (z,5)
 
 pos <InStr(ws.Name, "Inventory")
 pos &InStr(ws.Name, "Inventory") _

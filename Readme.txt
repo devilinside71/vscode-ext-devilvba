@@ -2,15 +2,15 @@ TODO:
 
 General:
 Full text, not only selection
-register API
+-----register API
 +Settings
 +Menu
 
 
-Separate branches >>>
+-----Separate branches >>>
 
 language-configuration:
-REm and '
++REm and '
 
 snippets:
 func
@@ -18,7 +18,7 @@ sub
 vars
 
 highlighting:
-property-end property
++property-end property
 colors?
 
 Formatting:

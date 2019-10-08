@@ -51,7 +51,7 @@ function activate(context) {
         'Put', 'REM', 'RaiseEvent', 'Randomize', 'ReDim', 'Reset', 'Resume', 'Return',
         'RmDir', 'SaveSetting', 'Seek', 'Select Case', 'SendKeys', 'Set', 'SetAttr',
         'Static', 'Stop', 'Sub', 'Then', 'Time', 'Type', 'Unload', 'Unlock',
-        'Wait', 'Wend', 'While', 'Width #', 'With', 'Write #');
+        'Wait', 'Wend', 'While', 'Width #', 'With', 'Write #', 'As', 'Optional');
       // prettier-ignore
       var funcsUp = new Array('Abs', 'Array', 'Asc', 'Atn', 'CBool', 'CByte', 'CCur',
         'CDate', 'CDbl', 'CDec', 'CInt', 'CLng', 'CSng', 'CStr', 'CVErr', 'CVar',
@@ -75,9 +75,9 @@ function activate(context) {
         'getCount', 'getURL', 'hasLocation', 'hasMoreElements', 'loadComponentFromURL',
         'nextElement', 'setActiveSheet');
       // prettier-ignore
-      var typesUp = new Array(' As Boolean', ' As Date', ' As Double', ' As Integer',
-        ' As Long', ' As Object', ' As String', ' As Variant', ' As WorkBook',
-        ' As WorkSheet', ' As Byte', ' As Single', ' As Currency', ' As Decimal');
+      var typesUp = new Array('As Boolean', 'As Date', 'As Double', 'As Integer',
+        'As Long', 'As Object', 'As String', 'As Variant', 'As WorkBook',
+        'As WorkSheet', 'As Byte', 'As Single', 'As Currency', 'As Decimal', 'As');
       // prettier-ignore
       var objectsUp = new Array('ActiveSheet', 'ActiveWorkbook', 'BasicLibraries',
         'CurrentController', 'GlobalScope', 'RunAutoMacros', 'StarDesktop', 'ThisComponent');
@@ -126,6 +126,7 @@ function activate(context) {
           line = formatVBACommand(line);
           line = formatVBAFunction(line);
           line = formatVBAType(line);
+          line = removeSpaces(line);
           line = formatVBAObject(line);
           line = formatVBAActivity(line);
           line = formatVBASubobject(line);
@@ -330,7 +331,7 @@ function activate(context) {
         var regex;
         for (k = 0; k < typesUp.length; k++) {
           regex = new RegExp('\\b' + typesUp[k] + '\\b', 'gi');
-          ret = ret.replace(regex, typesUp[k]);
+          ret = ret.replace(regex, ' ' + typesUp[k]);
         }
         return ret;
       }

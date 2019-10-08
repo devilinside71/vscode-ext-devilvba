@@ -256,6 +256,7 @@ function activate(context) {
         }
         return ret;
       }
+      
       // #region Format keywords
 
       /**

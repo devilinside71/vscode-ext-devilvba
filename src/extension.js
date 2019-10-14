@@ -546,13 +546,20 @@ function activate(context) {
       // #region Format operators
 
       /**
-       * Add space around operators
+       * Add space around operators except between ""
        * @param  {} line
        */
       function addSpaceToOperators(line) {
         var ret = line;
-        ret = ret.replace(/\s*(>|<|=|\+|-|&|\/)\s*/gi, replaceSingleOperator);
-        ret = ret.replace(/\s*(>|<|=)\s*(>|<|=)\s*/gi, replaceDoubleOperator);
+        ret = ret.replace(
+          /(>|<|=|\+|-|&|\/)(?=(?:[^"]*"[^"]*")*[^"]*$)/gi,
+          replaceSingleOperator
+        );
+        ret = ret.replace(
+          /(>|<|=)\s*(>|<|=)(?=(?:[^"]*"[^"]*")*[^"]*$)/gi,
+          replaceDoubleOperator
+        );
+      
         return ret;
       }
       function replaceSingleOperator(str, group1) {

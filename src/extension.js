@@ -125,6 +125,7 @@ function activate(context) {
         for (let index = 0; index < lines.length; index++) {
           let line = lines[index];
           line = addSpaceToOperators(line);
+          line = removeSpaceAroundBrackets(line);
           line = formatSpecialLine(line);
           line = removeSpaces(line);
           line = formatConstDeclarationLine(line);
@@ -559,7 +560,7 @@ function activate(context) {
           /(>|<|=)\s*(>|<|=)(?=(?:[^"]*"[^"]*")*[^"]*$)/gi,
           replaceDoubleOperator
         );
-      
+
         return ret;
       }
       function replaceSingleOperator(str, group1) {
@@ -569,6 +570,17 @@ function activate(context) {
         return ' ' + group1 + group2 + ' ';
       }
 
+      /**
+       * Remove space around brackets
+       * @param  {} line
+       */
+      function removeSpaceAroundBrackets(line) {
+        var ret = line;
+        ret = ret.replace(/\s*\(\s*(?=(?:[^"]*"[^"]*")*[^"]*$)/gi, '(');
+        ret = ret.replace(/\s*\)(?=(?:[^"]*"[^"]*")*[^"]*$)/gi, ')');
+        return ret;
+      }
+      
       // #endregion
 
       /**

@@ -198,7 +198,7 @@ function activate(context) {
         match = regex.exec(line);
         if (match !== null) {
           ret = true;
-          console.log('BrokenLine LINE: ' + match[1] + ' ' + line);
+          // console.log('BrokenLine LINE: ' + match[1] + ' ' + line);
         }
         return ret;
       }

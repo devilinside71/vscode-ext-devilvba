@@ -25,6 +25,10 @@ function activate(context) {
     .getConfiguration()
     .get('vscode-ext-devilvba.indentSize');
   // Get line length from configuration (settings)
+  const lineBreak = vscode.workspace
+    .getConfiguration()
+    .get('vscode-ext-devilvba.lineBreak');
+  // Get line length from configuration (settings)
   const lineLength = vscode.workspace
     .getConfiguration()
     .get('vscode-ext-devilvba.lineLength');
@@ -145,7 +149,9 @@ function activate(context) {
           line = getIndentedLine(line);
           newLines += line + '\n';
         }
-        newLines = getSplitLines(newLines);
+        if (lineBreak){
+          newLines = getSplitLines(newLines);
+        }
         // Display a message box to the user
         vscode.window.showInformationMessage(
           "Command 'Format selected VBA code' completed"

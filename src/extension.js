@@ -24,6 +24,10 @@ function activate(context) {
   const indentSize = vscode.workspace
     .getConfiguration()
     .get('vscode-ext-devilvba.indentSize');
+  // Get line length from configuration (settings)
+  const lineLength = vscode.workspace
+    .getConfiguration()
+    .get('vscode-ext-devilvba.lineLength');
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with  registerCommand
   // The commandId parameter must match the command field in package.json
@@ -129,8 +133,6 @@ function activate(context) {
           line = formatSpecialLine(line);
           line = removeSpaces(line);
           line = formatConstDeclarationLine(line);
-          line = formatSubLine(line);
-          line = formatFuncLine(line);
           line = formatVBACommand(line);
           line = formatVBAFunction(line);
           line = formatVBAType(line);
@@ -143,6 +145,7 @@ function activate(context) {
           line = getIndentedLine(line);
           newLines += line + '\n';
         }
+        newLines = getSplitLines(newLines);
         // Display a message box to the user
         vscode.window.showInformationMessage(
           "Command 'Format selected VBA code' completed"
@@ -150,6 +153,115 @@ function activate(context) {
         editor.edit(editBuilder => {
           editBuilder.replace(selection, newLines);
         });
+      }
+
+      /**
+       * Format long lines
+       * @param  {} tempText
+       */
+      function getSplitLines(tempText) {
+        var ret = '';
+        var newLines = [];
+        var tempLine = '';
+        newLines = tempText.split('\n');
+        breakPoint = lineLength;
+        for (i = 0; i < newLines.length; i++) {
+          line = newLines[i];
+          tempLine = splitLine(line) + '\n';
+          ret += tempLine;
+        }
+        return ret;
+      }
+
+      /**
+       * Determine if line is a remark one
+       * @param  {} line
+       */
+      function remLine(line) {
+        var ret = false;
+        regex = /^\s*(rem\b|')/gi;
+        match = regex.exec(line);
+        if (match !== null) {
+          ret = true;
+          // console.log('REM LINE: ' + match[1] + ' ' + line);
+        }
+        return ret;
+      }
+
+      /**
+       * Determine if line ends with _
+       * @param  {} line
+       */
+      function brokenLine(line) {
+        var ret = false;
+        regex = /( _)$/gi;
+        match = regex.exec(line);
+        if (match !== null) {
+          ret = true;
+          console.log('BrokenLine LINE: ' + match[1] + ' ' + line);
+        }
+        return ret;
+      }
+      /**
+       * Split line to specific length
+       * @param  {} line
+       */
+      function splitLine(line) {
+        var retVal;
+        var lineLengthCounter = 0;
+        var regex;
+        var parts;
+        var partsIndex;
+        var lineIndent;
+        var tempPart = '';
+        var retVal2 = '';
+        var retVal3 = '';
+        // Determine initial indent
+        lineIndent = '';
+        regex = /^(\s*).*$/;
+        match = regex.exec(line);
+        if (match !== null) {
+          lineIndent = match[1];
+        }
+        // console.log('Initial indent: ' + lineIndent.length + ' ' + line);
+        if (line.length < breakPoint || remLine(line) || brokenLine(line)) {
+          // console.log('Line is smaller than ' + breakPoint + ': ' + line);
+          retVal = line;
+        } else {
+          // Operators except between quotation
+          // prettier-ignore
+          regex = new RegExp('(>|<|=|\\+|-|&|\\/|,)(?=(?:[^"]*"[^"]*")*[^"]*$)', 'gi');
+          // Operators except between quotation an brackets
+          // prettier-ignore
+          // regex = new RegExp('(>|<|=|\\+|-|&|\\/|,)(?=(?=(?:[^"]*"[^"]*")*[^"]*$)(?![^\\(]*\\)))', 'gi');
+          // eslint-disable-next-line id-length
+          retVal = line.replace(regex, function($0, $1) {
+      // console.log($1+' '+line);
+      return $1+' _';
+    });
+          parts = retVal.split(' _');
+          retVal2 = '';
+          retVal3 = '_\n' + lineIndent + '   ';
+          // console.log('Parts: ' + parts.length + ' ' + line);
+          lineLengthCounter = 0;
+          for (partsIndex = 0; partsIndex < parts.length; partsIndex++) {
+            tempPart = parts[partsIndex].replace(/ _$/gi, '').trim() + ' ';
+            lineLengthCounter += tempPart.length;
+            if (lineLengthCounter < breakPoint || partsIndex === 0) {
+              if (partsIndex === 0) {
+                retVal2 += lineIndent + tempPart;
+              } else {
+                retVal2 += tempPart;
+              }
+            } else {
+              retVal3 += tempPart;
+            }
+          }
+        }
+        if (retVal2 !== '') {
+          retVal = retVal2 + retVal3;
+        }
+        return retVal;
       }
 
       /**
@@ -411,115 +523,10 @@ function activate(context) {
 
       // #endregion
 
-      // #region Functions and Subs
-
       /**
        * Format function first line
        * @param  {} line
        */
-      function formatFuncLine(line) {
-        var ret = line;
-        var subret = '';
-        var mainRegexp;
-        var subRegexp;
-        var mainMatch;
-        var subMatch;
-        var subElems;
-        var index;
-        var elem;
-        mainRegexp = /(private\s*function |global\s*function |function )\s*(.*)\((.*)\)\s*as\s*(\b[a-zA-Z0-9_]+\b)$/gi;
-        mainMatch = mainRegexp.exec(line);
-        try {
-          subElems = mainMatch[3].split(',');
-          for (index = 0; index < subElems.length; index++) {
-            subRegexp = /(\b[a-zA-Z0-9_]+\b)\s*as\s*(\b[a-zA-Z0-9_]+\b)/gi;
-            elem = subElems[index].trim();
-            // console.log('E:' + elem);
-            subMatch = subRegexp.exec(elem);
-            // console.log(elem + ' SM:' + subMatch.length);
-            try {
-              subret += subMatch[1] + ' As ' + capitalize(subMatch[2]);
-              if (index + 1 !== subElems.length) {
-                subret += ', ';
-              }
-            } catch (error) {
-              subret += formatOptionalPart(elem);
-            }
-          }
-          ret =
-            capitalize(mainMatch[1]) +
-            mainMatch[2].trim() +
-            '(' +
-            subret +
-            ') As ' +
-            capitalize(mainMatch[4]);
-          ret = ret.replace('function', 'Function');
-        } catch (error) {}
-        return ret;
-      }
-
-      /**
-       * Format Sub first line
-       * @param  {} line
-       */
-      function formatSubLine(line) {
-        var ret = line;
-        var subret = '';
-        var mainRegexp;
-        var subRegexp;
-        var mainMatch;
-        var subMatch;
-        var subElems;
-        var index;
-        var elem;
-        mainRegexp = /(private\s*sub |global\s*sub |sub )\s*(.*)\((.*)\)\s*$/gi;
-        mainMatch = mainRegexp.exec(line);
-        try {
-          subElems = mainMatch[3].split(',');
-          for (index = 0; index < subElems.length; index++) {
-            subRegexp = /(\b[a-zA-Z0-9_]+\b)\s*as\s*(\b[a-zA-Z0-9_]+\b)/gi;
-            elem = subElems[index].trim();
-            // console.log('E:' + elem);
-            subMatch = subRegexp.exec(elem);
-            // console.log(elem + ' SM:' + subMatch.length);
-            try {
-              subret += subMatch[1] + ' As ' + capitalize(subMatch[2]);
-              if (index + 1 !== subElems.length) {
-                subret += ', ';
-              }
-            } catch (error) {
-              subret += formatOptionalPart(elem);
-            }
-          }
-          ret =
-            capitalize(mainMatch[1]) + mainMatch[2].trim() + '(' + subret + ')';
-          ret = ret.replace('sub', 'Sub');
-        } catch (error) {}
-        return ret;
-      }
-
-      /**
-       * Format Function and Sub Optional parameters
-       * @param  {} line
-       */
-      function formatOptionalPart(line) {
-        var ret = line;
-        var mainRegexp;
-        var mainMatch;
-        // console.log('Try OPTIONAL ' + line);
-        mainRegexp = /(\boptional\b)\s*(.*)\s*=\s*(.*)\s*/gi;
-        mainMatch = mainRegexp.exec(line);
-        try {
-          // console.log('MOPT:' + mainMatch.length);
-          ret = 'Optional ' + mainMatch[2] + ' = ' + mainMatch[3];
-        } catch (error) {
-          // console.log('Not OPTIONAL');
-        }
-        return ret;
-      }
-
-      // #endregion
-
       /**
        * Format Const declaration line
        * @param  {} line
@@ -576,15 +583,15 @@ function activate(context) {
        */
       function removeSpaceAroundBrackets(line) {
         var ret = line;
-        regex=/"\s*\(/;
-        match=regex.exec(line);
-        if (match === null){
+        regex = /"\s*\(/;
+        match = regex.exec(line);
+        if (match === null) {
           ret = ret.replace(/\s*\(\s*(?=(?:[^"]*"[^"]*")*[^"]*$)/gi, '(');
         }
         ret = ret.replace(/\s*\)(?=(?:[^"]*"[^"]*")*[^"]*$)/gi, ')');
         return ret;
       }
-      
+
       // #endregion
 
       /**

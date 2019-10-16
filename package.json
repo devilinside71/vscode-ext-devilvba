@@ -74,6 +74,18 @@
                     "minimum": 0,
                     "maximum": 10,
                     "description": "Indent size in characters."
+                },
+                "vscode-ext-devilvba.lineBreak": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Execute line break during formatting."
+                },
+                "vscode-ext-devilvba.lineLength": {
+                    "type": "number",
+                    "default": 80,
+                    "minimum": 0,
+                    "maximum": 200,
+                    "description": "Line length."
                 }
             }
         }

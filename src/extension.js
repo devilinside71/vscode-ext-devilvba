@@ -580,22 +580,33 @@ function activate(context) {
        */
       function addSpaceToOperators(line) {
         var ret = line;
-        ret = ret.replace(
-          /(>|<|=|\+|-|&|\/)(?=(?:[^"]*"[^"]*")*[^"]*$)/gi,
-          replaceSingleOperator
-        );
-        ret = ret.replace(
-          /(>|<|=)\s*(>|<|=)(?=(?:[^"]*"[^"]*")*[^"]*$)/gi,
-          replaceDoubleOperator
-        );
-
+        if (!remLine(line)) {
+          // Single operator
+          ret = ret.replace(
+            /(>|<|=|\+|-|&|\/)(?=(?:[^"]*"[^"]*")*[^"]*$)/gi,
+            function($capture0, $capture1) {
+              return ' ' + $capture1 + ' ';
+            }
+          );
+          // Double operator
+          ret = ret.replace(
+            /(>|<|=)\s*(>|<|=)(?=(?:[^"]*"[^"]*")*[^"]*$)/gi,
+            function($capture0, $capture1, $capture2) {
+              return ' ' + $capture1 + $capture2 + ' ';
+            }
+          );
+          // Hexa value &HC00000
+          regex = /\s*&\s*(H[A-F0-9]{1,8})/g;
+          ret = ret.replace(regex, function($capture0, $capture1) {
+            return ' &' + $capture1;
+          });
+          // Negative value -16
+          regex = /\s*-\s*([0-9])/g;
+          ret = ret.replace(regex, function($capture0, $capture1) {
+            return ' -' + $capture1;
+          });
+        }
         return ret;
-      }
-      function replaceSingleOperator(str, group1) {
-        return ' ' + group1 + ' ';
-      }
-      function replaceDoubleOperator(str, group1, group2) {
-        return ' ' + group1 + group2 + ' ';
       }
 
       /**

@@ -129,7 +129,6 @@ function activate(context) {
         const lines = selectedText.split('\n');
         var outText = '';
         var i = 0;
-        var j = 0;
         // Format VBA code
         for (let index = 0; index < lines.length; index++) {
           let line = lines[index];
@@ -151,22 +150,31 @@ function activate(context) {
           outText += line + '\n';
         }
         if (lineBreak) {
-          outText = getSplitLines(outText);
-          const newLines = outText.split('\n');
-          outText = '';
-          for (let index = 0; index < newLines.length; index++) {
-            let line = newLines[index];
-            line = getIndentedLine(line);
-            outText += line + '\n';
+          for (let repeat = 0; repeat < 3; repeat++) {
+            outText = getSplitLines(outText);
+            const newLines = outText.split('\n');
+            outText = '';
+            for (let index = 0; index < newLines.length; index++) {
+              let line = newLines[index];
+              if (index < newLines.length - 2) {
+                let lineNext = newLines[index + 1].trim();
+                if (line.endsWith(' _') && lineNext === '') {
+                  line = line.replace(/ _$/, '');
+                  index += 1;
+                }
+              }
+              line = getIndentedLine(line);
+              outText += line + '\n';
+            }
           }
-          outText = getSplitLines(outText);
-          const newLines2 = outText.split('\n');
-          outText = '';
-          for (let index2 = 0; index2 < newLines2.length; index2++) {
-            let line2 = newLines2[index2];
-            line2 = getIndentedLine(line2);
-            outText += line2 + '\n';
-          }
+          // outText = getSplitLines(outText);
+          // const newLines2 = outText.split('\n');
+          // outText = '';
+          // for (let index2 = 0; index2 < newLines2.length; index2++) {
+          //   let line2 = newLines2[index2];
+          //   line2 = getIndentedLine(line2);
+          //   outText += line2 + '\n';
+          // }
         }
         // Display a message box to the user
         vscode.window.showInformationMessage(

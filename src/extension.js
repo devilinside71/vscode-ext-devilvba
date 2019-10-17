@@ -127,8 +127,9 @@ function activate(context) {
 
         let selectedText = document.getText(selection);
         const lines = selectedText.split('\n');
-        var newLines = '';
-
+        var outText = '';
+        var i = 0;
+        var j = 0;
         // Format VBA code
         for (let index = 0; index < lines.length; index++) {
           let line = lines[index];
@@ -147,17 +148,32 @@ function activate(context) {
           line = formatVBAConstant(line);
           line = formatVBAMsgConstant(line);
           line = getIndentedLine(line);
-          newLines += line + '\n';
+          outText += line + '\n';
         }
-        if (lineBreak){
-          newLines = getSplitLines(newLines);
+        if (lineBreak) {
+          outText = getSplitLines(outText);
+          const newLines = outText.split('\n');
+          outText = '';
+          for (let index = 0; index < newLines.length; index++) {
+            let line = newLines[index];
+            line = getIndentedLine(line);
+            outText += line + '\n';
+          }
+          outText = getSplitLines(outText);
+          const newLines2 = outText.split('\n');
+          outText = '';
+          for (let index2 = 0; index2 < newLines2.length; index2++) {
+            let line2 = newLines2[index2];
+            line2 = getIndentedLine(line2);
+            outText += line2 + '\n';
+          }
         }
         // Display a message box to the user
         vscode.window.showInformationMessage(
           "Command 'Format selected VBA code' completed"
         );
         editor.edit(editBuilder => {
-          editBuilder.replace(selection, newLines);
+          editBuilder.replace(selection, outText);
         });
       }
 
@@ -218,17 +234,9 @@ function activate(context) {
         var regex;
         var parts;
         var partsIndex;
-        var lineIndent;
         var tempPart = '';
         var retVal2 = '';
         var retVal3 = '';
-        // Determine initial indent
-        lineIndent = '';
-        regex = /^(\s*).*$/;
-        match = regex.exec(line);
-        if (match !== null) {
-          lineIndent = match[1];
-        }
         // console.log('Initial indent: ' + lineIndent.length + ' ' + line);
         if (line.length < breakPoint || remLine(line) || brokenLine(line)) {
           // console.log('Line is smaller than ' + breakPoint + ': ' + line);
@@ -237,34 +245,24 @@ function activate(context) {
           // Operators except between quotation
           // prettier-ignore
           regex = new RegExp('(>|<|=|\\+|-|&|\\/|,)(?=(?:[^"]*"[^"]*")*[^"]*$)', 'gi');
-          // Operators except between quotation an brackets
-          // prettier-ignore
-          // regex = new RegExp('(>|<|=|\\+|-|&|\\/|,)(?=(?=(?:[^"]*"[^"]*")*[^"]*$)(?![^\\(]*\\)))', 'gi');
-          // eslint-disable-next-line id-length
-          retVal = line.replace(regex, function($0, $1) {
-      // console.log($1+' '+line);
-      return $1+' _';
-    });
+          retVal = line.replace(regex, function($capture0, $capture1) {
+            // console.log($1+' '+line);
+            return $capture1 + ' _';
+          });
           parts = retVal.split(' _');
           retVal2 = '';
-          retVal3 = '_\n' + lineIndent + '   ';
+          retVal3 = '_\n';
           // console.log('Parts: ' + parts.length + ' ' + line);
           lineLengthCounter = 0;
           for (partsIndex = 0; partsIndex < parts.length; partsIndex++) {
             tempPart = parts[partsIndex].replace(/ _$/gi, '').trim() + ' ';
             lineLengthCounter += tempPart.length;
             if (lineLengthCounter < breakPoint || partsIndex === 0) {
-              if (partsIndex === 0) {
-                retVal2 += lineIndent + tempPart;
-              } else {
-                retVal2 += tempPart;
-              }
+              retVal2 += tempPart;
             } else {
               retVal3 += tempPart;
             }
           }
-        }
-        if (retVal2 !== '') {
           retVal = retVal2 + retVal3;
         }
         return retVal;
@@ -352,8 +350,8 @@ function activate(context) {
         match = regex.exec(line);
         if (match !== null) {
           ret = getIndent(currentIndent) + line.trim();
-          currentIndent++;
-          underscoreCount++;
+          currentIndent += 3;
+          underscoreCount += 3;
           underscored = true;
           // console.log(underscoreCount);
         } else if (underscored) {
@@ -530,10 +528,6 @@ function activate(context) {
       // #endregion
 
       /**
-       * Format function first line
-       * @param  {} line
-       */
-      /**
        * Format Const declaration line
        * @param  {} line
        */
@@ -595,6 +589,7 @@ function activate(context) {
           ret = ret.replace(/\s*\(\s*(?=(?:[^"]*"[^"]*")*[^"]*$)/gi, '(');
         }
         ret = ret.replace(/\s*\)(?=(?:[^"]*"[^"]*")*[^"]*$)/gi, ')');
+        ret = ret.replace('"(', '" (');
         return ret;
       }
 

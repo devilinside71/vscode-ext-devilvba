@@ -177,6 +177,36 @@ Private Function GetComputerNameMac() As String
   
 End Function
 
+Private Sub ARBHelp(Parameter As String)
+  'Show ARB Window
+  'Parameters:
+  '           {String} Parameter
+  'Created by: Laszlo Tamas
+  'Licence: MIT
 
+  On Error GoTo PROC_ERR
+
+  'Code here
+
+  '---------------
+PROC_EXIT:
+  On Error GoTo 0
+  Exit Sub
+PROC_ERR:
+  Debug.Print "Error in Sub ARBHelp"
+  If Err.Number Then
+    Call clLogger.logERROR(Err.Description, "ARBHelp")
+  End If
+  Resume PROC_EXIT
+End Sub
+Private Sub ARBHelpTest
+  'Test procedure for ARBHelp
+  'Show ARB Window
+  Dim testVal As String
+  Dim dtmStartTime As Date
+  testVal = Nothing
+  dtmStartTime = Now()
+  Call ARBHelp(testVal)
+End Sub
 
 
